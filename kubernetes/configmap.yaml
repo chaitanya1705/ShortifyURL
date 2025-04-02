@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: url-shortener-config
+  namespace: url-shortener
+data:
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  BASE_URL: "http://url-shortener.example.com"  # Update with your domain or LoadBalancer IP
+  SHORTCODE_LENGTH: "6"
