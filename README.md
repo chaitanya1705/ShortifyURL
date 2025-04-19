@@ -71,7 +71,10 @@ Invoke-RestMethod -Uri "http://localhost:5000/shorten" -Method Post -ContentType
 Invoke-RestMethod -Uri "http://localhost:5000/stats" -Method Get
 
 ```
-
+Close all other terminals and run 
+```sh
+docker-compose down
+```
 ---
 
 ### Week 2: Kubernetes Deployment
@@ -106,7 +109,11 @@ Test with curl:
 export SERVICE_URL=$(minikube service url-shortener-service -n url-shortener --url)
 curl -X POST -H "Content-Type: application/json" -d '{"url":"https://example.com/very/long/url"}' $SERVICE_URL/shorten
 ```
-
+OR For Powershell
+```sh
+$SERVICE_URL = minikube service url-shortener-service -n url-shortener --url
+Invoke-RestMethod -Uri "$SERVICE_URL/shorten" -Method Post -ContentType "application/json" -Body '{"url":"https://example.com/very/long/url"}'
+```
 ---
 
 ### Week 3: Scaling, Load Balancing & Monitoring
@@ -119,8 +126,16 @@ kubectl apply -f kubernetes/ingress.yaml
 ```sh
 kubectl get hpa -n url-shortener
 kubectl get pods -n url-shortener -w
+```
+#### In a new terminal
+```sh
+minikube addons enable metrics-server
+kubectl top pods -n url-shortener
+```
+```sh
 kubectl logs -l app=url-shortener -n url-shortener --tail=100 -f
 ```
+
 #### Run Stress Test
 ```sh
 pip install requests
