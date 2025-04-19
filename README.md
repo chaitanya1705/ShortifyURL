@@ -119,7 +119,6 @@ kubectl apply -f kubernetes/ingress.yaml
 ```sh
 kubectl get hpa -n url-shortener
 kubectl get pods -n url-shortener -w
-kubectl top pods -n url-shortener
 kubectl logs -l app=url-shortener -n url-shortener --tail=100 -f
 ```
 #### Run Stress Test
