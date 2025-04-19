@@ -59,7 +59,7 @@ docker run -d --name url-shortener -p 5000:5000 --link redis:redis -e REDIS_HOST
 #### Test the API
 ```sh
 $body = @{
-    url = "https://www.youtube.com/watch?v=-jAys1yqva8"
+    url = "<Any-url>"
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri "http://localhost:5000/shorten" -Method Post -ContentType "application/json" -Body $body
