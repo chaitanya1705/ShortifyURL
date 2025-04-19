@@ -84,7 +84,8 @@ docker-compose down
 #### Start Minikube and Setup Docker Env
 ```sh
 minikube start
-eval $(minikube docker-env)
+& minikube -p minikube docker-env | Invoke-Expression
+
 ```
 
 #### Build and Load Image into Minikube
