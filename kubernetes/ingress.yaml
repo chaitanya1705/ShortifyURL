@@ -5,13 +5,13 @@ metadata:
   namespace: url-shortener
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: url-shortener.example.com  # Replace with your domain
+  - host: url-shortener.example.com
     http:
       paths:
-      - path: /
+      - path: /()(shorten|[a-zA-Z0-9]+)
         pathType: Prefix
         backend:
           service:

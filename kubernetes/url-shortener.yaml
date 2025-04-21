@@ -56,4 +56,4 @@ spec:
   ports:
   - port: 80
     targetPort: 5000
-  type: LoadBalancer  # Expose service externally (use NodePort if running locally without cloud provider)
+  type: NodePort  

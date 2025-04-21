@@ -2,6 +2,7 @@ import os
 import random
 import string
 import redis
+import socket
 from flask import Flask, request, redirect, jsonify, render_template
 
 app = Flask(__name__)
@@ -41,7 +42,8 @@ def shorten_url():
             return jsonify({
                 'short_url': f"{base_url}/{short_code}",
                 'long_url': long_url,
-                'short_code': short_code
+                'short_code': short_code,
+                'instance_id': socket.gethostname()
             })
     
     # Create new short code
@@ -72,8 +74,10 @@ def stats():
     total_urls = len(redis_client.keys('*'))
     return jsonify({
         'total_urls': total_urls,
-        'instance_id': os.environ.get('HOSTNAME', 'local')
-    })
+        'instance_id': socket.gethostname(),
+        'status': 'ok'
+    }), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
