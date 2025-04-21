@@ -151,7 +151,7 @@ kubectl logs -l app=url-shortener -n url-shortener --tail=100 -f
 #### Run Stress Test
 ```sh
 pip install requests
-python scripts/stress_test.py --url http:// --requests 1000 --concurrency 50
+python scripts/stress_test.py 
 ```
 
 #### Scale Manually (if needed)
